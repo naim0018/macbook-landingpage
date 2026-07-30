@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Regular";
+  src: url("/fonts/regular.otf");
+}
+
+@font-face {
+  font-family: "Medium";
+  src: url("/fonts/medium.otf");
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url("/fonts/semibold.otf");
+}
+
+@font-face {
+  font-family: "Bold";
+  src: url("/fonts/bold.otf");
+}
+
+* {
+  scrollbar-color: var(--color-dark-100) var(--color-black);
+}
+
+:root {
+  --gradient-color: linear-gradient(to bottom right,
+      #0894ff 0%,
+      #c959dd 34%,
+      #ff2e54 68%,
+      #ff9004);
+}
+
+@theme {
+  --font-regular: "Regular";
+  --font-medium: "Medium";
+  --font-semibold: "SemiBold";
+  --font-bold: "Bold";
+  --color-primary: #0071e3;
+  --color-dark-100: #86868b;
+  --color-dark-200: #2e2e30;
+  --color-light-100: #adb5bd;
+
+  --text-72: 72px;
+  --text-60: 60px;
+  --text-48: 48px;
+  --text-36: 36px;
+  --text-30: 30px;
+  --text-20: 20px;
+  --text-18: 18px;
+  --text-14: 14px;
+  --text-12: 12px;
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: #000;
+  color: var(--color-dark-100);
+  font-family: var(--font-semibold);
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-semibold text-white;
+  }
+
+  h2 {
+    @apply text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-white;
+  }
+
+  h3 {
+    @apply text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl md:text-3xl lg:text-4xl font-semibold text-white;
+  }
+
+  h5 {
+    @apply text-sm sm:text-lg md:text-xl font-semibold text-white;
+  }
+
+  h6 {
+    @apply text-xs sm:text-sm md:text-lg font-semibold text-white;
+  }
+
+  p {
+    @apply text-xs sm:text-sm md:text-lg lg:text-xl font-medium;
+
+    span {
+      @apply text-primary mx-0.5;
+    }
+  }
+
+  span {
+    @apply text-xs sm:text-sm md:text-lg;
+  }
+
+  small {
+    @apply text-xs font-normal;
+  }
+
+  label {
+    @apply text-xs sm:text-sm md:text-lg font-medium;
+  }
+
+  sub,
+  sup {
+    @apply text-xs;
+  }
+}
