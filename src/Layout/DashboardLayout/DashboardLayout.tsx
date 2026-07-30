@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import Breadcrumbs from "./Breadcrumbs";
-import { adminRoutes } from "@/routes/AdminRoutes";
+// import Breadcrumbs from "./Breadcrumbs";
 
 const DashboardLayout = () => {
   return (
@@ -18,7 +17,7 @@ const DashboardLayout = () => {
           {/* Breadcrumbs (Optional) */}
           <div className="mb-6">
             <div className="flex items-center gap-2 space-y-2">
-              <Breadcrumbs config={adminRoutes} basePath="/admin" />
+              {/* <Breadcrumbs config={adminRoutes} basePath="/admin" /> */}
             </div>
             <h1 className="text-2xl font-bold text-gray-800">Overview</h1>
             <p className="text-sm text-gray-500">
