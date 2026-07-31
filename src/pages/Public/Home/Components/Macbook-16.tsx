@@ -10,11 +10,12 @@ type GLTFResult = GLTF & {
 
 interface MacbookProps extends React.ComponentPropsWithoutRef<'group'> {
   color?: string;
+  texturePath?: string;
 }
 
-export default function Macbook16({ color, ...props }: MacbookProps) {
+export default function Macbook16({ color, texturePath = '/screen.png', ...props }: MacbookProps) {
   const { nodes, materials } = useGLTF('/models/macbook-16-transformed.glb') as unknown as GLTFResult
-  const texture = useTexture('/screen.png')
+  const texture = useTexture(texturePath)
 
   const originalColors = React.useRef<Record<string, THREE.Color>>({});
 
