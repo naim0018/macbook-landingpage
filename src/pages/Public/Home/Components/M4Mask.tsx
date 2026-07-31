@@ -10,34 +10,36 @@ const M4Mask = () => {
             const rect = containerRef.current.getBoundingClientRect();
             const windowH = window.innerHeight;
 
-            // Calculate progress (0 to 1) through the scroll track
-            const totalScrollable = rect.height - windowH;
+            // Start zoom exactly when the video container reaches the top of the screen
+            const startThreshold = 0;
             
-            // If the section is not in view yet, keep mask fully scaled out
-            if (rect.top > 0) {
-                svgRef.current.style.transform = "scale(80)";
+            if (rect.top > startThreshold) {
+                svgRef.current.style.transform = "scale(60)";
                 return;
             }
 
-            // progress: 0 when top is at screen top, 1 when bottom is at screen bottom
-            const progress = Math.max(0, Math.min(1, -rect.top / (totalScrollable || 1)));
+            // Calculate progress through the scroll track, starting from startThreshold
+            const totalScrollable = rect.height - windowH;
+            const currentScroll = startThreshold - rect.top;
+            const totalScroll = totalScrollable + startThreshold;
+            const progress = Math.max(0, Math.min(1, currentScroll / (totalScroll || 1)));
 
             // Map progress to animation states:
-            // - 0.00 -> 0.02: video remains fully full-screen (scale = 80)
-            // - 0.02 -> 0.50: mask zooms in from 80 to 1.0
-            // - 0.50 -> 1.00: mask stays locked at 1.0
+            // - 0.00 -> 0.02: video remains fully full-screen (scale = 60)
+            // - 0.02 -> 0.85: mask zooms in slowly and smoothly from 60 to 1.0 based on scroll travel
+            // - 0.85 -> 1.00: mask stays locked at 1.0
             let animProgress = 0;
             if (progress < 0.02) {
                 animProgress = 0;
-            } else if (progress > 0.50) {
+            } else if (progress > 0.85) {
                 animProgress = 1;
             } else {
-                animProgress = (progress - 0.02) / 0.48;
+                animProgress = (progress - 0.02) / 0.83;
             }
 
-            // Custom ease curve (power of 2.2) to make the zoom transition buttery smooth
-            const easedProgress = Math.pow(animProgress, 2);
-            const scale = 80.0 - (80.0 - 1.0) * easedProgress;
+            // Custom cubic ease curve to keep zoom fluid and natural
+            const easedProgress = Math.pow(animProgress, 3);
+            const scale = 60.0 - (60.0 - 1.0) * easedProgress;
 
             // Update scale transform directly for 60fps performance
             svgRef.current.style.transform = `scale(${scale})`;
@@ -72,8 +74,8 @@ const M4Mask = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     className="absolute top-0 left-0 w-screen h-screen z-10 pointer-events-none origin-center will-change-transform"
                     style={{
-                        transform: "scale(80)",
-                        transition: "transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+                        transform: "scale(60)",
+                        transition: "transform 0.15s cubic-bezier(0.1, 0.8, 0.2, 1.0)"
                     }}
                 >
                     <g clipPath="url(#clip0_9665_188)">
