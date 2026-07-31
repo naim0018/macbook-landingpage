@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { routesGenerator } from "@/utils/Generator/RoutesGenerator";
 
 
 
 
 
+import App from "../App";
 import { publicRoutes } from "./PublicRoutes";
 
 // CORE COMPONENTS (Always included)
-const App = lazy(() => import("../App"));
 const Login = lazy(() => import("@/pages/Auth/Login"));
 const Signup = lazy(() => import("@/pages/Auth/Signup"));
 const Form = lazy(() => import("@/pages/Form"));
@@ -18,11 +18,7 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <App />
-      </Suspense>
-    ),
+    element: <App />,
     children: [
             ...routesGenerator(publicRoutes),
             {
