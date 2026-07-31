@@ -1,10 +1,4 @@
-import { lazy } from "react";
-import Loadable from "@/utils/Loadable";
-import { PublicSkeleton } from "@/common/Skeleton/Public/PublicSkeleton";
-const Home = Loadable(
-  lazy(() => import("@/pages/Public/Home/Home")),
-  PublicSkeleton
-);
+import Home from "@/pages/Public/Home/Home";
 
 
 export const publicRoutes = [
