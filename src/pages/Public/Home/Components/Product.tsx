@@ -100,9 +100,6 @@ const Product = () => {
     };
 
     useEffect(() => {
-        let isSnapping = false;
-        let lastScrollY = window.scrollY;
-
         const handleScroll = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
@@ -115,31 +112,6 @@ const Product = () => {
                 Math.min(1, -rect.top / (totalScrollableDistance || 1))
             );
             scrollProgressRef.current = progress;
-
-            // Snap to top if user is scrolling down and top of section enters viewport
-            const currentScrollY = window.scrollY;
-            const scrollingDown = currentScrollY > lastScrollY;
-            lastScrollY = currentScrollY;
-
-            // Trigger when the top of the section enters the bottom 45% of the viewport
-            if (
-                scrollingDown &&
-                !isSnapping &&
-                rect.top > 20 &&
-                rect.top < windowH * 0.45
-            ) {
-                isSnapping = true;
-                const targetScrollTop = currentScrollY + rect.top;
-
-                window.scrollTo({
-                    top: targetScrollTop,
-                    behavior: "smooth"
-                });
-                
-                setTimeout(() => {
-                    isSnapping = false;
-                }, 1000);
-            }
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -150,7 +122,7 @@ const Product = () => {
     return (
         <div>
             {/* Very tall container to act as a scroll track */}
-            <div ref={sectionRef} className="w-full h-[580vh] relative">
+            <div ref={sectionRef} className="w-full h-[680vh] relative">
                 {/* Sticky container that stays pinned while user scrolls through the track */}
                 <div 
                     className="sticky top-[8.5vh] w-full h-[85vh] rounded-lg overflow-hidden bg-black shadow-2xl cursor-grab active:cursor-grabbing select-none"
