@@ -108,8 +108,6 @@ const Practice = () => {
                   <AnimatedBox2/><cylinderGeometry args={[0.2, 0.2, 2]} />
                   <AnimatedBox3/>
                   <AnimatedBox4 />
-                  
-                  
               </mesh>
                   {/* <directionalLight position={[1, 1, 1] } /> */}
                   {/* <directionalLight position={[4, -0, 0] } /> */}

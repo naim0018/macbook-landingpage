@@ -9,6 +9,7 @@ import { routesGenerator } from "@/utils/Generator/RoutesGenerator";
 import App from "../App";
 import { publicRoutes } from "./PublicRoutes";
 import Practice from "@/pages/Public/Practice01/Practice";
+import Practice02 from "@/pages/Public/Practice02/Practice02";
 
 // CORE COMPONENTS (Always included)
 const Login = lazy(() => import("@/pages/Auth/Login"));
@@ -39,6 +40,10 @@ const routes = createBrowserRouter([
   {
     path: "/practice",
     element: <Practice />,
+  },
+  {
+    path: "/practice02",
+    element: <Practice02 />,
   },
   {
     path: "*",
