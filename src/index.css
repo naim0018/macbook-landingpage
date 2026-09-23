@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Regular";
+  src: url("/fonts/regular.otf");
+}
+
+@font-face {
+  font-family: "Medium";
+  src: url("/fonts/medium.otf");
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url("/fonts/semibold.otf");
+}
+
+@font-face {
+  font-family: "Bold";
+  src: url("/fonts/bold.otf");
+}
+
 * {
   scrollbar-color: var(--color-dark-100) var(--color-black);
 }
@@ -13,10 +33,10 @@
 }
 
 @theme {
-  --font-regular: ui-sans-serif, system-ui, sans-serif;
-  --font-medium: ui-sans-serif, system-ui, sans-serif;
-  --font-semibold: ui-sans-serif, system-ui, sans-serif;
-  --font-bold: ui-sans-serif, system-ui, sans-serif;
+  --font-regular: "Regular";
+  --font-medium: "Medium";
+  --font-semibold: "SemiBold";
+  --font-bold: "Bold";
   --color-primary: #0071e3;
   --color-dark-100: #86868b;
   --color-dark-200: #2e2e30;
